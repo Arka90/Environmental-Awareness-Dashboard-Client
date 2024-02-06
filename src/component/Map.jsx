@@ -9,25 +9,34 @@ import {
 } from "react-leaflet";
 
 import getLiveWeather from "../api/getLiveWeather";
+import getHistory from "../api/getHistory";
 
-const Map = () => {
+const Map = ({ handelDrawerOpen, isDrawerOpen, handelStatsData }) => {
   // const [position, setPosition] = useState([]);
   // const position = [22.576476, 88.433109];
   const [position, setPosition] = useState([]);
 
   const [markers, setMarkers] = useState([]);
 
+  const handelViewCharts = async (marker) => {
+    handelDrawerOpen(true);
+    const data = await getHistory(marker.coords[0], marker.coords[1]);
+    handelStatsData(data);
+  };
+
   const handleMapClick = async (e) => {
+    if (isDrawerOpen) return;
     const { lat, lng } = e.latlng;
     const data = await getLiveWeather(lat, lng);
-
     setMarkers([
       ...markers,
       {
         coords: [lat, lng],
-        data: `🌡️ Temparature: ${(data.temp / 10).toFixed(1)} 🕒 Pressure: ${
-          data.pressure
-        } 💧 Humidity: ${data.humidity}`,
+        data: {
+          temperature: data.temp,
+          pressure: data.pressure,
+          humidity: data.humidity,
+        },
       },
     ]);
   };
@@ -45,11 +54,11 @@ const Map = () => {
             setMarkers([
               {
                 coords: [latitude, longitude],
-                data: `
-              🌡️ Temparature: ${(data.temp / 10).toFixed(1)} 🕒 Pressure: ${
-                  data.pressure
-                } 💧 Humidity: ${data.humidity}
-              `,
+                data: {
+                  temperature: data.temp,
+                  pressure: data.pressure,
+                  humidity: data.humidity,
+                },
               },
             ])
           );
@@ -78,14 +87,33 @@ const Map = () => {
 
   return (
     <>
-      <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+      <MapContainer center={position} zoom={13} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {markers.map((marker, i) => (
           <Marker key={Date.now() * i} position={marker.coords}>
-            <Popup>{marker.data}</Popup>
+            <Popup>
+              <span className="text-lg">
+                🌡️ Temparature: {(marker.data.temperature / 10).toFixed(1)}
+              </span>
+              <br />
+              <span className="text-lg">
+                🕒 Pressure: {marker.data.pressure}
+              </span>
+              <br />
+              <span className="text-lg">
+                💧 Humidity: {marker.data.humidity}
+              </span>
+              <br />
+              <span
+                onClick={() => handelViewCharts(marker)}
+                className="block cursor-pointer text-sm mt-4 ml-24"
+              >
+                View Charts
+              </span>
+            </Popup>
           </Marker>
         ))}
 
