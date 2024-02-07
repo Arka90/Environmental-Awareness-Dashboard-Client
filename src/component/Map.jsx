@@ -64,6 +64,22 @@ const Map = ({ handelDrawerOpen, isDrawerOpen, handelStatsData }) => {
 
         // if there was an error getting the users location
         (error) => {
+          //Set a default location of kolkata
+          const latitude = "22.572645";
+          const longitude = "88.363892";
+          setPosition([latitude, longitude]);
+          getLiveWeather(latitude, longitude).then((data) =>
+            setMarkers([
+              {
+                coords: [latitude, longitude],
+                data: {
+                  temperature: data.temp,
+                  pressure: data.pressure,
+                  humidity: data.humidity,
+                },
+              },
+            ])
+          );
           console.error("Error getting user location:", error);
         }
       );
