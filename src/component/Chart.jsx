@@ -21,16 +21,31 @@ ChartJs.register(
   Tooltip
 );
 
-/*
-Labels for graph
-Data labels
-Dataset Label
-Data
-color
+const Chart = ({ labels, data, title, city, compareData, compareCity }) => {
+  let datasets = [];
 
-*/
+  const chartData = {
+    id: 1,
+    label: city,
+    backgroundColor: "#211C6A",
+    borderColor: "#211C6A",
+    data: data,
+  };
 
-const Chart = ({ labels, data, color, title }) => {
+  datasets.push(chartData);
+
+  if (compareData && compareCity) {
+    const compareDataForChart = {
+      id: 2,
+      label: compareCity,
+      backgroundColor: "#74E291",
+      borderColor: "#74E291",
+      data: compareData,
+    };
+
+    datasets.push(compareDataForChart);
+  }
+
   return (
     <div className="w-[500px]">
       <h1>{title}</h1>
@@ -38,15 +53,7 @@ const Chart = ({ labels, data, color, title }) => {
         datasetIdKey="id"
         data={{
           labels: labels,
-          datasets: [
-            {
-              id: 1,
-              label: "City 1",
-              backgroundColor: color,
-              borderColor: color,
-              data: data,
-            },
-          ],
+          datasets: datasets,
         }}
       />
     </div>

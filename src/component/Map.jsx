@@ -1,5 +1,6 @@
 import "leaflet/dist/leaflet.css";
 import { useEffect, useState } from "react";
+import ReactLoading from "react-loading";
 import {
   MapContainer,
   TileLayer,
@@ -7,13 +8,10 @@ import {
   Marker,
   useMapEvents,
 } from "react-leaflet";
-
 import getLiveWeather from "../api/getLiveWeather";
 import getHistory from "../api/getHistory";
 
 const Map = ({ handelDrawerOpen, isDrawerOpen, handelStatsData }) => {
-  // const [position, setPosition] = useState([]);
-  // const position = [22.576476, 88.433109];
   const [position, setPosition] = useState([]);
 
   const [markers, setMarkers] = useState([]);
@@ -83,7 +81,17 @@ const Map = ({ handelDrawerOpen, isDrawerOpen, handelStatsData }) => {
     return null;
   };
 
-  if (position.length == 0) return <h2 className="text-2xl">Map is Loading</h2>;
+  if (position.length == 0)
+    return (
+      <div className="flex items-center justify-center h-full bg-[#1F2544]">
+        <ReactLoading
+          type="spinningBubbles"
+          color="#74E291"
+          height={250}
+          width={250}
+        />
+      </div>
+    );
 
   return (
     <>
