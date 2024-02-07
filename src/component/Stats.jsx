@@ -10,7 +10,7 @@ const Stats = ({ data }) => {
   const { date, humidity, pressure, temperature, name } = data;
 
   return (
-    <div className="w-full flex justify-around my-5">
+    <div className="w-full flex flex-col md:flex-row md:items-center justify-around my-5">
       <Dropdown handelCompareData={setCompareData} />
       <Chart
         title="Chart For temperature"

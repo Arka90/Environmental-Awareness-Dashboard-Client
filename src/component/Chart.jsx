@@ -47,8 +47,8 @@ const Chart = ({ labels, data, title, city, compareData, compareCity }) => {
   }
 
   return (
-    <div className="w-[500px]">
-      <h1>{title}</h1>
+    <div className="md:w-[500px] sm:w-[400px] w-[300px] mb-3">
+      <h1 className="text-lg ml-16 mb-5">{title}</h1>
       <Line
         datasetIdKey="id"
         data={{
