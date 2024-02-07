@@ -13,19 +13,19 @@ const SceletonLoading = () => {
       }}
     >
       <Skeleton
-        sx={{ bgcolor: "grey.900" }}
+        sx={{ bgcolor: "grey.425" }}
         variant="rectangular"
         width={300}
         height={150}
       />
       <Skeleton
-        sx={{ bgcolor: "grey.900" }}
+        sx={{ bgcolor: "grey.425" }}
         variant="rectangular"
         width={300}
         height={150}
       />
       <Skeleton
-        sx={{ bgcolor: "grey.900" }}
+        sx={{ bgcolor: "grey.425" }}
         variant="rectangular"
         width={300}
         height={150}
