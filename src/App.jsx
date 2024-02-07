@@ -1,7 +1,7 @@
 import "leaflet/dist/leaflet.css";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
-
+import CaretDownFilled from "@ant-design/icons/CaretDownFilled";
 import Map from "./component/Map";
 import { useState } from "react";
 import Stats from "./component/Stats";
@@ -24,8 +24,13 @@ function App() {
             color="error"
             size="large"
             onClick={() => setDrawerOpen(false)}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+            }}
           >
-            Close
+            Collapse <CaretDownFilled />
           </Button>
         </div>
 
