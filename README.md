@@ -1,8 +1,17 @@
-# React + Vite
+# Environmental Awareness Dashboard Features
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Data show according to user location on first load.
 
-Currently, two official plugins are available:
+![Initail App load](https://i.ibb.co/jRGSh1p/initial-loading.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## View Weather Data
+
+![single data](https://i.ibb.co/yqny4hV/view-details.png)
+
+## View Charts
+
+![View Charts](https://i.ibb.co/3ckNjfv/view-charts.png)
+
+## Compare Charts
+
+![Compare Charts](https://i.ibb.co/QpyTvZH/compare-charts.png)
